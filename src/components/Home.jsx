@@ -21,21 +21,30 @@ function Home() {
                         sit voluptas officiis dolore placeat, deserunt laborum 
                         dicta tempore saepe consequuntur magni assumenda sint officia.
                     </p>
+                    <p className="fw-bold">129.99 SEK</p>
+                    <button className="btn btn-primary">Purchase</button>
                 </div>
-                <div className="col-md-6 p-4 bg-secondary rounded"></div>
+                <div className="col-md-6 p-4">
+                    <img src="https://m.media-amazon.com/images/M  /MV5BMWMwMGQzZTItY2JlNC00OWZiLWIyMDctNDk2ZDQ2YjRjMWQ0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY98_CR1  ,0,67,98_AL_.jpg" 
+                        alt="" className="d-block h-100 mx-auto rounded" />
+                </div>
             </div>
             <div className="row justify-content-center">
                 <Link to="/" className="my-2 col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center">
-                    <img src="" alt="" style={{height: 300}} />
+                    <img src="https://m.media-amazon.com/images/M  /MV5BMWMwMGQzZTItY2JlNC00OWZiLWIyMDctNDk2ZDQ2YjRjMWQ0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY98_CR1  ,0,67,98_AL_.jpg" 
+                        alt="" style={{height: 300}} className="rounded" />
                 </Link>
                 <Link to="/" className="my-2 col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center">
-                    <img src="" alt="" style={{height: 300}} />
+                    <img src="https://m.media-amazon.com/images/M  /MV5BMWMwMGQzZTItY2JlNC00OWZiLWIyMDctNDk2ZDQ2YjRjMWQ0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY98_CR1  ,0,67,98_AL_.jpg" 
+                        alt="" style={{height: 300}} className="rounded" />
                 </Link>
                 <Link to="/" className="my-2 col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center">
-                    <img src="" alt="" style={{height: 300}} />
+                    <img src="https://m.media-amazon.com/images/M  /MV5BMWMwMGQzZTItY2JlNC00OWZiLWIyMDctNDk2ZDQ2YjRjMWQ0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY98_CR1  ,0,67,98_AL_.jpg" 
+                        alt="" style={{height: 300}} className="rounded" />
                 </Link>
                 <Link to="/" className="my-2 col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center">
-                    <img src="" alt="" style={{height: 300}} />
+                    <img src="https://m.media-amazon.com/images/M  /MV5BMWMwMGQzZTItY2JlNC00OWZiLWIyMDctNDk2ZDQ2YjRjMWQ0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY98_CR1  ,0,67,98_AL_.jpg" 
+                        alt="" style={{height: 300}} className="rounded" />
                 </Link>
             </div>
         </div>
