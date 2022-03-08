@@ -1,12 +1,18 @@
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import Navbar from "./components/Navbar";
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movies" element={<h1>Movies</h1>} />
+        </Routes>
+      </div>
+    </>
   );
 }
 
