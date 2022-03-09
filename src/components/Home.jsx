@@ -12,7 +12,7 @@ function Home() {
                 return res.json();
             })
             .then((json) => {
-                setMovies(json.data.slice(0, 4))
+                setMovies(json.data.slice(5, 9))
                 setFeatured(json.data[4])
                 setLoading(false);
             })
@@ -22,6 +22,13 @@ function Home() {
             })
     }, [])
 
+    if (loading) return (
+        <div className="d-flex align-items-center fs-4">
+            <strong>Loading...</strong>
+            <div className="spinner-border ms-auto" role="status" aria-hidden="true">
+            </div>
+        </div>
+    )
     return (
         <div>
             <div className="row p-5">
@@ -45,24 +52,19 @@ function Home() {
                 </div>
             </div>
             <div className="row justify-content-center">
-                <Link to="/" className="my-2 col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center">
-                    <img src="https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY98_CR1,0,67,98_AL_.jpg" 
-                        alt="" style={{height: 300}} className="rounded" />
-                </Link>
-                <Link to="/" className="my-2 col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center">
-                    <img src="https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY98_CR1,0,67,98_AL_.jpg" 
-                        alt="" style={{height: 300}} className="rounded" />
-                </Link>
-                <Link to="/" className="my-2 col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center">
-                    <img src="https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY98_CR1,0,67,98_AL_.jpg" 
-                        alt="" style={{height: 300}} className="rounded" />
-                </Link>
-                <Link to="/" className="my-2 col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center">
-                    <img src="https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY98_CR1,0,67,98_AL_.jpg" 
-                        alt="" style={{height: 300}} className="rounded" />
-                </Link>
+                {movies.map((movie) => (
+                    <Card key={movie.id} movie={movie} />
+                ))}
             </div>
         </div>
+    )
+}
+
+function Card(movie) {
+    return (
+        <Link to={"/movies/" + movie.id} className="my-2 col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center">
+            <img className="rounded" style={{height: 300}} src={movie.poster} alt={movie.title + " poster"} />
+        </Link>
     )
 }
 
