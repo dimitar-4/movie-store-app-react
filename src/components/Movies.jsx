@@ -4,7 +4,9 @@ function Movies() {
     return (
         <div>
             <h1>Movies</h1>
-            <MovieCard />
+            <div className="my-3">
+                <MovieCard />
+            </div>
         </div>
     )
 }
