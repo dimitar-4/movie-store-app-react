@@ -14,8 +14,8 @@ function Home() {
             })
             .then((json) => {
                 if (json.status === 200) {
-                    setMovies(json.data.slice(5, 9))
-                    setFeatured(json.data[4])
+                    setMovies(json.data.slice(4, 8))
+                    setFeatured(json.data[1])
                 } else {
                     setErrors(json.errors ?? ["Sorry! Something went wrong."]);
                 }
