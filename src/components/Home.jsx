@@ -5,6 +5,7 @@ function Home() {
     const [loading, setLoading] = useState(true);
     const [featured, setFeatured] = useState();
     const [movies, setMovies] = useState([]);
+    const [errors, setErrors] = useState(null);
 
     useEffect(() => {
         fetch("http://localhost:8000/api/movies")
@@ -12,12 +13,16 @@ function Home() {
                 return res.json();
             })
             .then((json) => {
-                setMovies(json.data.slice(5, 9))
-                setFeatured(json.data[4])
+                if (json.status === 200) {
+                    setMovies(json.data.slice(5, 9))
+                    setFeatured(json.data[4])
+                } else {
+                    setErrors(json.errors ?? ["Sorry! Something went wrong."]);
+                }
                 setLoading(false);
             })
             .catch((err) => {
-                console.error(err);
+                setErrors(["Sorry! Something went wrong."]);
                 setLoading(false);
             })
     }, [])
@@ -29,6 +34,13 @@ function Home() {
             </div>
         </div>
     )
+    else if (errors && errors.length > 0)
+        return errors.map((e, i) => (
+            <div key={i} className="alert alert-danger">
+                <h4 className="alert-heading">Oops!</h4>
+                <p>{e}</p>    
+            </div>
+        ))
     return (
         <div>
             <div className="row p-5">
@@ -60,7 +72,7 @@ function Home() {
     )
 }
 
-function Card(movie) {
+function Card({movie}) {
     return (
         <Link to={"/movies/" + movie.id} className="my-2 col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center">
             <img className="rounded" style={{height: 300}} src={movie.poster} alt={movie.title + " poster"} />
