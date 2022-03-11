@@ -40,7 +40,7 @@ function Movies() {
         <div>
             <h1>Movies</h1>
             {movies.map((movie) => (
-                <div className="my-3">
+                <div key={movie.id} className="my-3">
                     <MovieCard movie={movie} />
                 </div>
             ))}
