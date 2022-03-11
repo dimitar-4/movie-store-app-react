@@ -6,7 +6,7 @@ function MovieCard({ movie }) {
             <div>
                 <img src={movie.poster} alt={movie.title + " poster"} className="d-flex h-100 rounded" style={{width: 175}} />
             </div>
-            <div className="p-4">
+            <div className="p-4 flex-grow-1">
                 <h2>{movie.title}</h2>
                 <div className="d-flex">
                     <p className="me-1">{movie.year}</p>
