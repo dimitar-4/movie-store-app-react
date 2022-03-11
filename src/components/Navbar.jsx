@@ -3,7 +3,6 @@ import Bag from "./Bag";
 
 function Navbar() {
     return (
-        <>
             <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/">The Movie Store</Link>
@@ -22,11 +21,10 @@ function Navbar() {
                             <Link className="nav-link" to="/orders">Orders</Link>
                             </li>
                         </ul>
+                        <Bag />
                     </div>
                 </div>
             </nav>
-            <Bag />
-        </>
     )
 }
 
