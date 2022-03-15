@@ -1,5 +1,5 @@
 import { bagReducer } from "./bagReducer";
-import { createContext, useReducer, useContext } from "react";
+import { createContext, useReducer, useContext, useEffect } from "react";
 
 export const types = {
   ADD: "ADD",
@@ -15,16 +15,28 @@ const Bag = createContext({
   dispatch: () => {},
   addToBag: (movie) => {},
   clearBag: () => {},
+  removeFromBag: (movieId) => {},
 });
 
 function BagContext({ children }) {
-  const [state, dispatch] = useReducer(bagReducer, {
-    movies: [],
-    totalAmount: "0.00",
-  });
+  const [state, dispatch] = useReducer(
+    bagReducer,
+    JSON.parse(localStorage.getItem("bag")) || {
+      movies: [],
+      totalAmount: "0.00",
+    }
+  );
+
+  useEffect(() => {
+    localStorage.setItem("bag", JSON.stringify(state));
+  }, [state]);
 
   function addToBag(movie) {
     dispatch({ type: types.ADD, payload: movie });
+  }
+
+  function removeFromBag(movieId) {
+    dispatch({ type: types.REMOVE, payload: movieId });
   }
 
   function clearBag() {
@@ -32,7 +44,9 @@ function BagContext({ children }) {
   }
 
   return (
-    <Bag.Provider value={{ state, dispatch, addToBag, clearBag }}>
+    <Bag.Provider
+      value={{ state, dispatch, addToBag, clearBag, removeFromBag }}
+    >
       {children}
     </Bag.Provider>
   );
