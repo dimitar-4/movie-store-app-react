@@ -1,11 +1,14 @@
 import Portal from "./Portal";
 import { GiBasket } from "react-icons/gi";
 import { useBag } from "../contexts/BagContext";
+import { Link } from "react-router-dom";
+import { MdDeleteForever } from "react-icons/md";
 
 function Bag() {
   const {
     state: { movies },
     clearBag,
+    removeFromBag,
   } = useBag();
 
   return (
@@ -44,13 +47,24 @@ function Bag() {
           </div>
           <div className="offcanvas-body">
             {movies.map((m) => (
-              <p key={m.id}>
-                {m.title} - {m.quantity}
-              </p>
+              <div key={m.id}>
+                <p className="d-flex justify-content-between">
+                  {m.title} - {m.quantity}
+                  <button
+                    className="btn btn-sm btn-danger"
+                    onClick={() => removeFromBag(m.id)}
+                  >
+                    <MdDeleteForever className="fs-5" />
+                  </button>
+                </p>
+              </div>
             ))}
             <button className="btn btn-danger" onClick={() => clearBag()}>
-              Clear Bag
+              Clear
             </button>
+            <Link to="/checkout" className="btn btn-warning">
+              Checkout
+            </Link>
           </div>
         </div>
       </Portal>
