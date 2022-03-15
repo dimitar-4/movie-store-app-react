@@ -3,12 +3,15 @@ import { useParams } from "react-router-dom";
 import Errors from "./Errors";
 import Spinner from "./Spinner";
 import { FaStar } from "react-icons/fa";
+import { useBag } from "../contexts/BagContext";
 
 function MovieDetails() {
   const { movieId } = useParams();
   const [loading, setLoading] = useState(true);
   const [movie, setMovie] = useState();
   const [errors, setErrors] = useState(null);
+
+  const { addToBag } = useBag();
 
   useEffect(() => {
     fetch("http://localhost:8000/api/movies/" + movieId)
@@ -86,7 +89,12 @@ function MovieDetails() {
             )}
             <div className="d-flex justify-content-center mt-3">
               <button className="btn btn-primary mx-2">Purchase</button>
-              <button className="btn btn-light mx-2">Add to Bag</button>
+              <button
+                className="btn btn-light mx-2"
+                onClick={() => addToBag(movie)}
+              >
+                Add to basket
+              </button>
             </div>
           </div>
         </div>
