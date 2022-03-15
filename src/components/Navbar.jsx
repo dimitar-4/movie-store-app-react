@@ -10,7 +10,9 @@ function Navbar() {
           className="navbar-brand text-light fs-3 ms-4 d-flex align-items-center"
           to="/"
         >
-          Screen Goldies <GiPopcorn className="text-warning fs-3" />
+          <strong className="text-warning">S</strong>creen
+          <strong className="text-warning">G</strong>oldies
+          <GiPopcorn className="text-warning fs-3" />
         </Link>
         <button
           className="navbar-toggler bg-warning"
