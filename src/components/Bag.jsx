@@ -3,8 +3,10 @@ import { GiBasket } from "react-icons/gi";
 import { useBag } from "../contexts/BagContext";
 
 function Bag() {
-  const bag = useBag();
-  console.log(bag?.state);
+  const {
+    state: { movies },
+    clearBag,
+  } = useBag();
 
   return (
     <>
@@ -18,7 +20,8 @@ function Bag() {
         <GiBasket size={20} />
         <span className="visually-hidden">shopping bag</span>
         <span className="position-absolute top-0 start-100 translate-middle badge bg-warning text-dark border-1 border-dark">
-          0<span className="visually-hidden">items in shopping bag</span>
+          {movies.length}
+          <span className="visually-hidden">items in shopping bag</span>
         </span>
       </a>
       <Portal>
@@ -40,10 +43,14 @@ function Bag() {
             ></button>
           </div>
           <div className="offcanvas-body">
-            <div>
-              Some text as placeholder. In real life you can have the elements
-              you have chosen. Like, text, images, lists, etc.
-            </div>
+            {movies.map((m) => (
+              <p key={m.id}>
+                {m.title} - {m.quantity}
+              </p>
+            ))}
+            <button className="btn btn-danger" onClick={() => clearBag()}>
+              Clear Bag
+            </button>
           </div>
         </div>
       </Portal>
