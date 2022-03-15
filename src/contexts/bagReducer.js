@@ -8,12 +8,15 @@ export function bagReducer(state, action) {
                 movies: addOrUpdate(state.movies, action.payload)
             };
         case types.REMOVE:
-            return state;
+            return {
+                ...state,
+                movies: state.movies.filter((m) => m.id !== action.payload)
+            };
         case types.CLEAR:
             return {
                 ...state,
                 movies: [],
-                totalAmount: 0.00
+                totalAmount: 0.00,
             };
         default:
             return state;
