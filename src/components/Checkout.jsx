@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useBag } from "../contexts/BagContext";
 
 function Checkout() {
@@ -13,11 +14,48 @@ function Checkout() {
 
   const {
     state: { movies, totalAmount },
+    clearBag,
   } = useBag();
+
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("Submitting form");
+    const body = JSON.stringify({
+      user: {
+        firstName,
+        lastName,
+        email,
+        address: {
+          street,
+          city,
+          state,
+          zip,
+          country,
+        },
+      },
+      movies: movies.map((m) => ({
+        movieId: m.id,
+        quantity: m.quantity,
+      })),
+    });
+    fetch("http://localhost:8000/api/orders/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body,
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.status === 201) {
+          clearBag();
+          navigate("/orders/" + json.data._id);
+        } else alert("Something went wrong.");
+      })
+      .catch((err) => {
+        alert("Something went wrong.");
+      });
   }
 
   return (
@@ -141,7 +179,7 @@ function Checkout() {
             <strong>{totalAmount} SEK</strong>
           </p>
           <button type="submit" className="btn btn-warning mt-4 d-block w-100">
-            Submit Order
+            Complete Order
           </button>
         </div>
       </div>
