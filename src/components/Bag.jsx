@@ -97,7 +97,7 @@ function BagItem({ movie }) {
           &nbsp;{movie.currency}
         </em>
         <MdDeleteForever
-          onClick={() => removeFromBag(movie.id)}
+          onClick={() => removeFromBag(movie)}
           role="button"
           className="ms-1 bg-danger text-light rounded"
         />
