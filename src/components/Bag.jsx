@@ -3,12 +3,12 @@ import { GiBasket } from "react-icons/gi";
 import { useBag } from "../contexts/BagContext";
 import { Link } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
+import { FaMoneyCheck } from "react-icons/fa";
 
 function Bag() {
   const {
     state: { movies },
     clearBag,
-    removeFromBag,
   } = useBag();
 
   return (
@@ -35,9 +35,20 @@ function Bag() {
           aria-labelledby="bagLabel"
         >
           <div className="offcanvas-header">
-            <h5 className="offcanvas-title" id="bagLabel">
-              Shopping Basket
+            <h5
+              className="offcanvas-title d-flex align-items-center"
+              id="bagLabel"
+            >
+              <GiBasket />
             </h5>
+            <button
+              className="btn btn-link bg-danger text-light d-flex align-items-center py-1"
+              style={{ textDecoration: "none" }}
+              onClick={() => clearBag()}
+            >
+              Clear&nbsp;
+              <GiBasket />
+            </button>
             <button
               type="button"
               className="btn-close text-reset"
@@ -45,30 +56,53 @@ function Bag() {
               aria-label="Close"
             ></button>
           </div>
-          <div className="offcanvas-body">
+          <div className="offcanvas-body d-flex flex-column">
+            <hr className="mt-0 mb-4" />
             {movies.map((m) => (
-              <div key={m.id}>
-                <p className="d-flex justify-content-between">
-                  {m.title} - {m.quantity}
-                  <button
-                    className="btn btn-sm btn-danger"
-                    onClick={() => removeFromBag(m.id)}
-                  >
-                    <MdDeleteForever className="fs-5" />
-                  </button>
-                </p>
-              </div>
+              <BagItem key={m.id} movie={m} />
             ))}
-            <button className="btn btn-danger" onClick={() => clearBag()}>
-              Clear
-            </button>
-            <Link to="/checkout" className="btn btn-warning">
-              Checkout
+            <Link
+              to="/checkout"
+              className="btn btn-warning mt-auto d-flex justify-content-center align-items-center"
+            >
+              Checkout&nbsp;
+              <FaMoneyCheck />
             </Link>
+            <hr />
           </div>
         </div>
       </Portal>
     </>
+  );
+}
+
+function BagItem({ movie }) {
+  const { removeFromBag } = useBag();
+
+  return (
+    <p className="d-flex justify-content-between">
+      <span>
+        <Link
+          to={"/movies/" + movie.id}
+          className="text-dark fw-bolder"
+          style={{ textDecoration: "none" }}
+        >
+          {movie.title}
+        </Link>
+        <em>&nbsp;&times;{movie.quantity}</em>
+      </span>
+      <span className="d-flex align-items-center">
+        <em>
+          {(parseFloat(movie.price) * movie.quantity).toFixed(2)}
+          &nbsp;{movie.currency}
+        </em>
+        <MdDeleteForever
+          onClick={() => removeFromBag(movie.id)}
+          role="button"
+          className="ms-1 bg-danger text-light rounded"
+        />
+      </span>
+    </p>
   );
 }
 
