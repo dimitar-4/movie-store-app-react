@@ -35,8 +35,8 @@ function BagContext({ children }) {
     dispatch({ type: types.ADD, payload: movie });
   }
 
-  function removeFromBag(movieId) {
-    dispatch({ type: types.REMOVE, payload: movieId });
+  function removeFromBag(movie) {
+    dispatch({ type: types.REMOVE, payload: movie });
   }
 
   function clearBag() {
