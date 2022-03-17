@@ -7,7 +7,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light text-light bg-dark mb-4">
       <div className="container-fluid">
         <Link
-          className="navbar-brand text-light fs-3 ms-4 d-flex align-items-center"
+          className="navbar-brand text-light fs-2 ms-4 d-flex align-items-center"
           to="/"
         >
           <strong className="text-warning">S</strong>creen
