@@ -6,31 +6,40 @@ export const types = {
   REMOVE: "REMOVE",
   CLEAR: "CLEAR",
   CALCULATE_TOTAL: "CALCULATE_TOTAL",
+  OPEN: "OPEN",
+  CLOSE: "CLOSE",
+  TOGGLE: "TOGGLE",
 };
 
 const Bag = createContext({
   state: {
     movies: [],
     totalAmount: "0.00",
+    isOpen: false,
   },
   dispatch: () => {},
   addToBag: (movie) => {},
   clearBag: () => {},
   removeFromBag: (movieId) => {},
+  openBag: () => {},
+  closeBag: () => {},
+  toggleBag: () => {},
 });
 
 function BagContext({ children }) {
-  const [state, dispatch] = useReducer(
-    bagReducer,
-    JSON.parse(localStorage.getItem("bag")) || {
-      movies: [],
-      totalAmount: "0.00",
-    }
-  );
+  const [state, dispatch] = useReducer(bagReducer, {
+    movies: JSON.parse(localStorage.getItem("bagMovies")) || [],
+    totalAmount: "0.00",
+    isOpen: false,
+  });
 
   useEffect(() => {
-    localStorage.setItem("bag", JSON.stringify(state));
-  }, [state]);
+    localStorage.setItem("bagMovies", JSON.stringify(state.movies));
+  }, [state.movies]);
+
+  useEffect(() => {
+    calculateTotal();
+  }, []);
 
   function addToBag(movie) {
     dispatch({ type: types.ADD, payload: movie });
@@ -50,6 +59,18 @@ function BagContext({ children }) {
     dispatch({ type: types.CALCULATE_TOTAL });
   }
 
+  function openBag() {
+    dispatch({ type: types.OPEN });
+  }
+
+  function closeBag() {
+    dispatch({ type: types.CLOSE });
+  }
+
+  function toggleBag() {
+    dispatch({ type: types.TOGGLE });
+  }
+
   return (
     <Bag.Provider
       value={{
@@ -59,6 +80,9 @@ function BagContext({ children }) {
         clearBag,
         removeFromBag,
         calculateTotal,
+        openBag,
+        closeBag,
+        toggleBag,
       }}
     >
       {children}

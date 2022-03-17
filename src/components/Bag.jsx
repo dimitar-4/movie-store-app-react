@@ -1,23 +1,74 @@
 import Portal from "./Portal";
 import { GiBasket } from "react-icons/gi";
-import { useBag } from "../contexts/BagContext";
-import { Link } from "react-router-dom";
+import { useBag, types as bagTypes } from "../contexts/BagContext";
+import { Link, useLocation } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
 import { FaMoneyCheck } from "react-icons/fa";
+import { useEffect, useRef } from "react";
 
 function Bag() {
   const {
-    state: { movies },
+    state: { movies, isOpen },
     clearBag,
+    openBag,
+    closeBag,
+    dispatch,
   } = useBag();
+
+  const location = useLocation();
+
+  const offcanvasRef = useRef(undefined);
+  const bsOffcanvasRef = useRef(undefined);
+
+  useEffect(() => {
+    if (bsOffcanvasRef.current) {
+      if (isOpen) bsOffcanvasRef.current.show();
+      else bsOffcanvasRef.current.hide();
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    function onShow(e) {
+      e.preventDefault();
+      openBag();
+    }
+
+    function onHide(e) {
+      e.preventDefault();
+      closeBag();
+    }
+
+    if (offcanvasRef.current && bsOffcanvasRef.current) {
+      offcanvasRef.current.addEventListener("show.bs.offcanvas", onShow);
+      offcanvasRef.current.addEventListener("hide.bs.offcanvas", onHide);
+    }
+
+    return () => {
+      if (offcanvasRef.current && bsOffcanvasRef.current) {
+        offcanvasRef.current.removeEventListener("show.bs.offcanvas", onShow);
+        offcanvasRef.current.removeEventListener("hide.bs.offcanvas", onHide);
+      }
+    };
+  }, [openBag, closeBag]);
+
+  useEffect(() => {
+    dispatch({ type: bagTypes.CLOSE });
+  }, [location, dispatch]);
+
+  function setRefs(el) {
+    if (el) {
+      offcanvasRef.current = el;
+      bsOffcanvasRef.current =
+        window.bootstrap.Offcanvas.getOrCreateInstance(el);
+    }
+  }
 
   return (
     <>
-      <a
+      <button
         className="btn btn-sm btn-dark ms-auto border-1 border-warning position-relative"
         data-bs-toggle="offcanvas"
-        href="#bag"
-        role="button"
+        data-bs-target="#bag"
         aria-controls="bag"
       >
         <GiBasket size={20} />
@@ -26,13 +77,14 @@ function Bag() {
           {movies.length}
           <span className="visually-hidden">items in shopping bag</span>
         </span>
-      </a>
+      </button>
       <Portal>
         <div
           className="offcanvas offcanvas-end"
           tabIndex="-1"
           id="bag"
           aria-labelledby="bagLabel"
+          ref={(el) => setRefs(el)}
         >
           <div className="offcanvas-header">
             <h5

@@ -23,6 +23,21 @@ export function bagReducer(state, action) {
                 ...state,
                 totalAmount: calculateTotal(state.movies),
             }
+        case types.OPEN:
+            return {
+                ...state,
+                isOpen: true,
+            }
+        case types.CLOSE:
+            return {
+                ...state,
+                isOpen: false,
+            }
+        case types.TOGGLE:
+            return {
+                ...state,
+                isOpen: !state.isOpen,
+            }
         default:
             return state;
     }
