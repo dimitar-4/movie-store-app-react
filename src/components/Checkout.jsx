@@ -199,7 +199,7 @@ function Checkout() {
           <button
             type="submit"
             className="btn btn-warning mt-4 d-block w-100"
-            disabled={isDisabled}
+            disabled={isDisabled()}
           >
             Complete Order
           </button>
