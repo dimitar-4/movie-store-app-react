@@ -58,6 +58,24 @@ function Checkout() {
       });
   }
 
+  function isDisabled() {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !street ||
+      !city ||
+      !state ||
+      !zip ||
+      !country
+    )
+      return true;
+
+    if (movies.length <= 0) return true;
+
+    return false;
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <h1 className="text-center">Checkout</h1>
@@ -178,7 +196,11 @@ function Checkout() {
             Total
             <strong>{totalAmount} SEK</strong>
           </p>
-          <button type="submit" className="btn btn-warning mt-4 d-block w-100">
+          <button
+            type="submit"
+            className="btn btn-warning mt-4 d-block w-100"
+            disabled={isDisabled}
+          >
             Complete Order
           </button>
         </div>
