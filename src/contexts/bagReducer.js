@@ -6,13 +6,11 @@ export function bagReducer(state, action) {
             return {
                 ...state,
                 movies: addOrUpdate(state.movies, action.payload),
-                totalAmount: calculateTotal(state.totalAmount, action.payload.price, "ADD"),
             };
         case types.REMOVE:
             return {
                 ...state,
                 movies: state.movies.filter((m) => m.id !== action.payload.id),
-                totalAmount: calculateTotal(state.totalAmount, action.payload.price, "REMOVE"),
             };
         case types.CLEAR:
             return {
@@ -20,23 +18,18 @@ export function bagReducer(state, action) {
                 movies: [],
                 totalAmount: 0.00,
             };
+        case types.CALCULATE_TOTAL:
+            return {
+                ...state,
+                totalAmount: calculateTotal(state.movies),
+            }
         default:
             return state;
     }
 }
 
-function calculateTotal(total, price, type) {
-    let newTotal = parseFloat(total);
-    switch (type) {
-        case "ADD":
-            newTotal = (newTotal + parseFloat(price)).toFixed(2);
-            return newTotal;
-        case "REMOVE":
-            newTotal = (newTotal - parseFloat(price)).toFixed(2);
-            return newTotal;
-        default:
-            throw new Error("Invalid action type");
-    }
+function calculateTotal(movies) {
+    return movies.reduce((acc, movie) => acc + movie.price * movie.quantity, 0).toFixed(2);
 }
 
 function addOrUpdate(movies, movie) {

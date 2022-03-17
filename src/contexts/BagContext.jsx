@@ -5,6 +5,7 @@ export const types = {
   ADD: "ADD",
   REMOVE: "REMOVE",
   CLEAR: "CLEAR",
+  CALCULATE_TOTAL: "CALCULATE_TOTAL",
 };
 
 const Bag = createContext({
@@ -33,19 +34,32 @@ function BagContext({ children }) {
 
   function addToBag(movie) {
     dispatch({ type: types.ADD, payload: movie });
+    calculateTotal();
   }
 
   function removeFromBag(movie) {
     dispatch({ type: types.REMOVE, payload: movie });
+    calculateTotal();
   }
 
   function clearBag() {
     dispatch({ type: types.CLEAR });
   }
 
+  function calculateTotal() {
+    dispatch({ type: types.CALCULATE_TOTAL });
+  }
+
   return (
     <Bag.Provider
-      value={{ state, dispatch, addToBag, clearBag, removeFromBag }}
+      value={{
+        state,
+        dispatch,
+        addToBag,
+        clearBag,
+        removeFromBag,
+        calculateTotal,
+      }}
     >
       {children}
     </Bag.Provider>
