@@ -1,8 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsInfoCircle } from "react-icons/bs";
 import { GiTwoCoins } from "react-icons/gi";
+import { useBag } from "../contexts/BagContext";
 
 function MovieCard({ movie }) {
+  const { addToBag } = useBag();
+  const navigate = useNavigate();
+
+  function handleBuy() {
+    addToBag(movie);
+    navigate("/checkout/");
+  }
+
   return (
     <div className="bg-dark text-white rounded d-flex h-100">
       <div>
@@ -33,7 +42,11 @@ function MovieCard({ movie }) {
             <Link to={"/movies/" + movie.id} className="btn btn-light me-2">
               <BsInfoCircle className="mb-1" /> Info
             </Link>
-            <button className="btn btn-warning">
+            <button
+              className="btn btn-warning"
+              onClick={handleBuy}
+              disabled={movie.stock <= 0}
+            >
               <GiTwoCoins /> Buy
             </button>
           </div>
