@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GiTwoCoins } from "react-icons/gi";
+import Spinner from "./Spinner";
+import Errors from "./Errors";
+import { useBag } from "../contexts/BagContext";
 
 function Home() {
   const [loading, setLoading] = useState(true);
   const [featured, setFeatured] = useState();
   const [movies, setMovies] = useState([]);
   const [errors, setErrors] = useState(null);
+
+  const { addToBag } = useBag();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:8000/api/movies")
@@ -28,28 +34,18 @@ function Home() {
       });
   }, []);
 
-  if (loading)
-    return (
-      <div className="d-flex align-items-center fs-4">
-        <strong>Loading...</strong>
-        <div
-          className="spinner-border ms-auto"
-          role="status"
-          aria-hidden="true"
-        ></div>
-      </div>
-    );
-  else if (errors && errors.length > 0)
-    return errors.map((e, i) => (
-      <div key={i} className="alert alert-danger">
-        <h4 className="alert-heading">Oops!</h4>
-        <p>{e}</p>
-      </div>
-    ));
+  function handleBuy() {
+    addToBag(featured);
+    navigate("/checkout/");
+  }
+
+  if (loading) return <Spinner />;
+  if (errors) return <Errors errors={errors} />;
   return (
     <div>
       <div className="row p-5">
         <h2 className="text-center mb-4 text-uppercase">Bestseller</h2>
+        <hr />
         <div className="col-md-6 p-4">
           <h1 className="mb-4">{featured.title}</h1>
           <div className="d-flex fw-bold">
@@ -65,7 +61,11 @@ function Home() {
           <p className="fw-bold">
             {featured.price} {featured.currency}
           </p>
-          <button className="btn btn-warning">
+          <button
+            className="btn btn-warning"
+            onClick={handleBuy}
+            disabled={featured.stock <= 0}
+          >
             <GiTwoCoins /> Buy
           </button>
         </div>
@@ -79,6 +79,7 @@ function Home() {
       </div>
       <div>
         <h2 className="text-center mb-4 text-uppercase">Popular Favorites</h2>
+        <hr />
         <div className="row justify-content-center mb-4">
           {movies.map((movie) => (
             <Card key={movie.id} movie={movie} />
