@@ -1,37 +1,45 @@
 import { GiPopcorn } from "react-icons/gi";
 import { GrMail } from "react-icons/gr";
+import {
+  FaFacebookSquare,
+  FaInstagramSquare,
+  FaYoutubeSquare,
+} from "react-icons/fa";
 
 function Footer() {
   const date = new Date();
 
   return (
     <footer className="py-4 bg-dark text-white mt-auto">
-      <div className="d-flex justify-content-evenly align-items-center">
-        <div>
+      <div className="row mx-auto">
+        <div className="col-12 col-md-4 my-2">
           <p className="m-0 text-center">Contact Us</p>
-          <p className="text-warning m-0">
+          <p className="text-warning text-center m-0">
             <GrMail />{" "}
-            <strong style={{ fontSize: 12 }} className="text-center fst-italic">
+            <strong className="text-center fst-italic">
               customer.service@sgms.net
             </strong>
           </p>
         </div>
-        <div>
-          <p className="text-center m-0 d-flex align-items-center">
-            {date.getFullYear()} Screen Goldies
+        <div className="col-12 col-md-4 my-2">
+          <p className="m-0 d-flex justify-content-center align-items-center">
+            <strong className="text-warning">S</strong>
+            creen<strong className="text-warning">G</strong>oldies
             <GiPopcorn className="text-warning" />
-            &copy;
+            &copy;&nbsp;
+            {date.getFullYear()}
           </p>
-          <p
-            style={{ fontSize: 12 }}
-            className="text-center text-warning m-0 fw-bold fst-italic"
-          >
+          <p className="text-center text-warning m-0 fw-bold fst-italic">
             All Rights Reserved
           </p>
         </div>
-        <div>
+        <div className="col-12 col-md-4 my-2">
           <p className="m-0 text-center">Follow Us</p>
-          <p className="text-warning m-0"></p>
+          <p className="text-warning m-0 text-center fs-5">
+            <FaFacebookSquare className="mx-2" />{" "}
+            <FaInstagramSquare className="mx-2" />{" "}
+            <FaYoutubeSquare className="mx-2" />
+          </p>
         </div>
       </div>
     </footer>
