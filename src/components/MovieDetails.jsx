@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Errors from "./Errors";
 import Spinner from "./Spinner";
 import { FaStar } from "react-icons/fa";
 import { useBag } from "../contexts/BagContext";
+import { GiTwoCoins } from "react-icons/gi";
+import { GiBasket } from "react-icons/gi";
 
 function MovieDetails() {
   const { movieId } = useParams();
@@ -12,6 +14,12 @@ function MovieDetails() {
   const [errors, setErrors] = useState(null);
 
   const { addToBag } = useBag();
+  const navigate = useNavigate();
+
+  function handleBuy() {
+    addToBag(movie);
+    navigate("/checkout/");
+  }
 
   useEffect(() => {
     fetch("http://localhost:8000/api/movies/" + movieId)
@@ -54,7 +62,9 @@ function MovieDetails() {
           <span className="mx-2">|</span>
           <span>{movie.length} minutes</span>
         </p>
-        <p className="text-secondary">{movie.plot}</p>
+        <hr />
+        <p className="text-dark">{movie.plot}</p>
+        <hr />
         <p>
           {movie.stars.map((s, i) =>
             i === movie.stars.length - 1 ? s : s + ", "
@@ -88,12 +98,20 @@ function MovieDetails() {
               </small>
             )}
             <div className="d-flex justify-content-center mt-3">
-              <button className="btn btn-primary mx-2">Purchase</button>
               <button
-                className="btn btn-light mx-2"
+                className="btn btn-light mx-2 d-flex align-items-center"
                 onClick={() => addToBag(movie)}
+                disabled={movie.stock <= 0}
               >
-                Add to basket
+                Add to &nbsp;
+                <GiBasket />
+              </button>
+              <button
+                className="btn btn-warning mx-2"
+                onClick={handleBuy}
+                disabled={movie.stock <= 0}
+              >
+                <GiTwoCoins /> Buy
               </button>
             </div>
           </div>
