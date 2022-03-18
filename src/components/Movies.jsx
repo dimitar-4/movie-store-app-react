@@ -43,7 +43,7 @@ function Movies() {
     ));
   return (
     <div>
-      <h1 className="text-uppercase text-center">Welcome to the Movies</h1>
+      <h2 className="text-uppercase text-center my-2">the movies</h2>
       <div className="row">
         {movies.map((movie) => (
           <div key={movie.id} className="col col-lg-6 col-xll-4 my-3">
