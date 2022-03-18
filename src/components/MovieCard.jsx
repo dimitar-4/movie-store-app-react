@@ -13,12 +13,12 @@ function MovieCard({ movie }) {
   }
 
   return (
-    <div className="bg-dark text-white rounded d-flex h-100">
+    <div className="bg-dark text-white d-flex flex-column flex-md-row h-100 shadow">
       <div>
         <img
           src={movie.poster}
           alt={movie.title + " poster"}
-          className="d-flex h-100 rounded"
+          className="d-flex h-100 mx-auto mx-md-0"
           style={{ width: 175 }}
         />
       </div>
@@ -34,11 +34,11 @@ function MovieCard({ movie }) {
           </p>
         </div>
         <p>{movie.description}</p>
-        <div className="d-flex align-items-center justify-content-between">
-          <p className="fw-bold m-0">
+        <div className="d-flex flex-column flex-md-row align-items-center justify-content-between">
+          <p className="m-0 fw-bolder">
             {movie.price} {movie.currency}
           </p>
-          <div>
+          <div className="mt-3 mt-md-0">
             <Link to={"/movies/" + movie.id} className="btn btn-light me-2">
               <BsInfoCircle className="mb-1" /> Info
             </Link>
