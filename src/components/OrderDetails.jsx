@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Spinner from "./Spinner";
 import Errors from "./Errors";
+import { MdArrowBackIosNew } from "react-icons/md";
 
 function OrderDetails() {
   const { orderId } = useParams();
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState();
   const [errors, setErrors] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -23,6 +25,10 @@ function OrderDetails() {
       .finally(() => setLoading(false));
   }, [orderId]);
 
+  function goBack() {
+    navigate("/movies/");
+  }
+
   if (loading) return <Spinner />;
   if (errors) return <Errors errors={errors} />;
   return (
@@ -35,6 +41,12 @@ function OrderDetails() {
       {order.movies.map((movie) => (
         <Card key={movie.movieId} movie={movie} />
       ))}
+      <button
+        className="btn btn-dark mx-2 my-4 d-flex align-items-center shadow"
+        onClick={goBack}
+      >
+        <MdArrowBackIosNew /> &nbsp;Back
+      </button>
     </div>
   );
 }
