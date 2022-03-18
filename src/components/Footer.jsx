@@ -16,9 +16,7 @@ function Footer() {
           <p className="m-0 text-center">Contact Us</p>
           <p className="text-warning text-center m-0">
             <GrMail />{" "}
-            <strong className="text-center fst-italic">
-              customer.service@sgms.net
-            </strong>
+            <em className="text-center">customer.service@sgms.net</em>
           </p>
         </div>
         <div className="col-12 col-md-4 my-2">
@@ -29,7 +27,7 @@ function Footer() {
             &copy;&nbsp;
             {date.getFullYear()}
           </p>
-          <p className="text-center text-warning m-0 fw-bold fst-italic">
+          <p className="text-center text-warning m-0 fst-italic">
             All Rights Reserved
           </p>
         </div>
