@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useBag } from "../contexts/BagContext";
+import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 
 function Checkout() {
   const [firstName, setFirstName] = useState("");
@@ -18,6 +19,10 @@ function Checkout() {
   } = useBag();
 
   const navigate = useNavigate();
+
+  function goBack() {
+    navigate("/movies/");
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -77,11 +82,11 @@ function Checkout() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1 className="text-center">Checkout</h1>
-      <div className="row mt-4">
-        <div className="col pe-4">
-          <h2 className="mb-4">Billing Details</h2>
+    <form onSubmit={handleSubmit} className="mb-4">
+      <h2 className="text-center text-uppercase">Checkout</h2>
+      <div className="row p-3 p-md-0 mt-4">
+        <div className="col-12 col-md-7 col p-0 pe-md-4 mb-4">
+          <h3 className="mb-4">Billing Details</h3>
           <div className="row">
             <div className="col">
               <input
@@ -169,8 +174,8 @@ function Checkout() {
             </div>
           </div>
         </div>
-        <div className="col-5 col-lg-4 offset-lg-1">
-          <h2 className="mb-4">Order Review</h2>
+        <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
+          <h3 className="mb-4">Order Review</h3>
           {movies.map((movie) => (
             <p key={movie.id} className="d-flex justify-content-between">
               <span>
@@ -197,11 +202,18 @@ function Checkout() {
             <strong>{totalAmount} SEK</strong>
           </p>
           <button
+            className="btn btn-dark mt-4 d-flex justify-content-center align-items-center w-100 shadow"
+            onClick={goBack}
+          >
+            <MdArrowBackIosNew />
+            &nbsp; Continue Shopping
+          </button>
+          <button
             type="submit"
-            className="btn btn-warning mt-4 d-block w-100"
+            className="btn btn-warning mt-4 d-block w-100 shadow"
             disabled={isDisabled()}
           >
-            Complete Order
+            Complete Order <MdArrowForwardIos />
           </button>
         </div>
       </div>
