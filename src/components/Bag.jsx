@@ -94,7 +94,7 @@ function Bag() {
               <GiBasket />
             </h5>
             <button
-              className="btn btn-link bg-secondary text-light d-flex align-items-center py-1"
+              className="btn btn-link bg-dark text-light d-flex align-items-center py-1 shadow"
               style={{ textDecoration: "none" }}
               onClick={() => clearBag()}
             >
@@ -115,7 +115,7 @@ function Bag() {
             ))}
             <Link
               to="/checkout"
-              className="btn btn-warning mt-auto d-flex justify-content-center align-items-center"
+              className="btn btn-warning mt-auto d-flex justify-content-center align-items-center shadow"
             >
               Checkout&nbsp;
               <FaMoneyCheck />
