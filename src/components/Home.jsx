@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { GiTwoCoins } from "react-icons/gi";
+import { GiTwoCoins, GiUsbKey } from "react-icons/gi";
+import { RiRefund2Line, RiMovie2Fill } from "react-icons/ri";
+import { MdOutlineLocalShipping } from "react-icons/md";
 import Spinner from "./Spinner";
 import Errors from "./Errors";
 import { useBag } from "../contexts/BagContext";
@@ -39,14 +41,18 @@ function Home() {
     navigate("/checkout/");
   }
 
+  function seeMovies() {
+    navigate("/movies/");
+  }
+
   if (loading) return <Spinner />;
   if (errors) return <Errors errors={errors} />;
   return (
     <div>
-      <div className="row p-5">
+      <div className="row p-3">
         <h2 className="text-center mb-4 text-uppercase">Bestseller</h2>
         <hr />
-        <div className="col-md-6 p-4">
+        <div className="col-md-6 p-4 order-1 order-md-0">
           <h1 className="mb-4">{featured.title}</h1>
           <div className="d-flex fw-bold">
             <p className="me-1">{featured.year}</p>
@@ -62,7 +68,7 @@ function Home() {
             {featured.price} {featured.currency}
           </p>
           <button
-            className="btn btn-warning"
+            className="btn btn-warning shadow"
             onClick={handleBuy}
             disabled={featured.stock <= 0}
           >
@@ -73,8 +79,32 @@ function Home() {
           <img
             src={featured.poster}
             alt={featured.title + " poster"}
-            className="d-block h-100 mx-auto rounded"
+            className="d-block h-100 mx-auto shadow"
           />
+        </div>
+      </div>
+      <div className="row bg-dark text-light mb-4 p-3 border-top border-bottom border-3 border-warning">
+        <div className="col-12 col-md-4 text-center my-2">
+          <p className="m-0">
+            <MdOutlineLocalShipping className="fs-2 text-warning" />
+          </p>
+          <em>
+            Shipment and delivery is always <strong>FREE</strong>!!!
+          </em>
+        </div>
+        <div className="col-12 col-md-4 text-center my-2">
+          <p className="m-0">
+            <GiUsbKey className="fs-2 text-warning" />
+          </p>
+          <em>High quality physical formats!!!</em>
+        </div>
+        <div className="col-12 col-md-4 text-center my-2">
+          <p className="m-0">
+            <RiRefund2Line className="fs-2 text-warning" />
+          </p>
+          <em>
+            <strong>FREE</strong> returns and refunds in 48 hours!!!
+          </em>
         </div>
       </div>
       <div>
@@ -85,6 +115,14 @@ function Home() {
             <Card key={movie.id} movie={movie} />
           ))}
         </div>
+      </div>
+      <div className="">
+        <button
+          className="btn btn-dark mx-auto my-4 w-50 d-flex justify-content-center align-items-center shadow"
+          onClick={seeMovies}
+        >
+          All Movies&nbsp; <RiMovie2Fill />
+        </button>
       </div>
     </div>
   );
@@ -97,7 +135,7 @@ function Card({ movie }) {
       className="my-2 col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center"
     >
       <img
-        className="rounded"
+        className="shadow"
         style={{ height: 300 }}
         src={movie.poster}
         alt={movie.title + " poster"}
