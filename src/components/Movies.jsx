@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { API_URL } from "../config/api";
 import MovieCard from "./MovieCard";
 
 function Movies() {
@@ -7,7 +8,7 @@ function Movies() {
   const [errors, setErrors] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/movies")
+    fetch(API_URL + "/movies")
       .then((response) => response.json())
       .then((json) => {
         if (json.status === 200) {

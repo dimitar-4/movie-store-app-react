@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Spinner from "./Spinner";
 import Errors from "./Errors";
 import { MdArrowBackIosNew } from "react-icons/md";
+import { API_URL } from "../config/api";
 
 function OrderDetails() {
   const { orderId } = useParams();
@@ -13,7 +14,7 @@ function OrderDetails() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:8000/api/orders/" + orderId)
+    fetch(API_URL + "/orders/" + orderId)
       .then((res) => res.json())
       .then((json) => {
         if (json.status === 200) setOrder(json.data);

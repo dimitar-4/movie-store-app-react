@@ -6,6 +6,7 @@ import { MdOutlineLocalShipping } from "react-icons/md";
 import Spinner from "./Spinner";
 import Errors from "./Errors";
 import { useBag } from "../contexts/BagContext";
+import { API_URL } from "../config/api";
 
 function Home() {
   const [loading, setLoading] = useState(true);
@@ -17,7 +18,7 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/movies")
+    fetch(API_URL + "/movies")
       .then((res) => {
         return res.json();
       })

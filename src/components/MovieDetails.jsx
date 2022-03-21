@@ -7,6 +7,7 @@ import { useBag } from "../contexts/BagContext";
 import { GiTwoCoins, GiBasket, GiDirectorChair } from "react-icons/gi";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { BsStars } from "react-icons/bs";
+import { API_URL } from "../config/api";
 
 function MovieDetails() {
   const { movieId } = useParams();
@@ -27,7 +28,7 @@ function MovieDetails() {
   }
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/movies/" + movieId)
+    fetch(API_URL + "/movies/" + movieId)
       .then((res) => res.json())
       .then((json) => {
         switch (json.status) {
