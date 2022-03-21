@@ -10,7 +10,7 @@ import Orders from "./components/Orders";
 
 function App() {
   return (
-    <div className="d-flex flex-column min-vh-100 bg-light">
+    <div className="d-flex flex-column min-vh-100 bg-img">
       <Navbar />
       <div className="container">
         <Routes>
