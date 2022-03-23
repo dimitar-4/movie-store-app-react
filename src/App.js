@@ -7,6 +7,7 @@ import Movies from "./components/Movies";
 import Navbar from "./components/Navbar";
 import OrderDetails from "./components/OrderDetails";
 import Orders from "./components/Orders";
+import AboutContact from "./components/AboutContact";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/orders" element={<Orders />} />
           <Route path="/orders/:orderId" element={<OrderDetails />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/about" element={<AboutContact />} />
         </Routes>
       </div>
       <Footer />
