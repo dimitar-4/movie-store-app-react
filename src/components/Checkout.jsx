@@ -86,8 +86,8 @@ function Checkout() {
     <form onSubmit={handleSubmit} className="mb-4">
       <h2 className="text-center text-uppercase">Checkout</h2>
       <div className="row p-3 p-md-0 mt-4">
-        <div className="col-12 col-md-7 col p-0 pe-md-4 mb-4">
-          <h3 className="mb-4">Billing Details</h3>
+        <div className="col-12 col-md-7 col p-2 mb-4 bg-dark">
+          <h3 className="mb-4 text-light text-center">Billing Details</h3>
           <div className="row">
             <div className="col">
               <input
@@ -176,7 +176,7 @@ function Checkout() {
           </div>
         </div>
         <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
-          <h3 className="mb-4">Order Review</h3>
+          <h3 className="mb-4 text-center">Order Review</h3>
           {movies.map((movie) => (
             <p key={movie.id} className="d-flex justify-content-between">
               <span>
