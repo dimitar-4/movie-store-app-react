@@ -51,7 +51,7 @@ function Home() {
   return (
     <div>
       <div className="row p-3">
-        <h2 className="text-center mb-4 text-uppercase">Bestseller</h2>
+        <h2 className="text-center mb-4 text-uppercase">A must see classic</h2>
         <hr />
         <div className="col-md-6 p-4 order-1 order-md-0">
           <h1 className="mb-4">{featured.title}</h1>
