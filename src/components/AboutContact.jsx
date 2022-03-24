@@ -47,8 +47,8 @@ function AboutContact() {
       <h2 className="text-center text-uppercase mb-4">Contact Us</h2>
       <form className="mb-4">
         <div className="row">
-          <div className="col-12 col-md-10 col-lg-8 offset-lg-2 bg-dark p-2">
-            <div className="row g-3 mb-4">
+          <div className="col-12 col-md-10 col-lg-8 offset-lg-2 bg-dark border-top border-bottom border-3 border-warning p-2">
+            <div className="row g-3 mb-4 mt-2">
               <div className="col form-floating">
                 <input
                   type="text"
@@ -88,7 +88,7 @@ function AboutContact() {
               ></textarea>
             </div>
             <div className="d-flex justify-content-center">
-              <button className="btn btn-warning d-flex align-items-center">
+              <button className="btn btn-warning d-flex align-items-center mb-2">
                 Send Message&nbsp;
                 <BiMessageSquareCheck className="fs-4" />
               </button>

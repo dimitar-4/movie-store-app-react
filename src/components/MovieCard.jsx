@@ -13,7 +13,7 @@ function MovieCard({ movie }) {
   }
 
   return (
-    <div className="bg-dark text-white d-flex flex-column flex-md-row h-100 shadow">
+    <div className="bg-dark text-white d-flex flex-column flex-md-row h-100 shadow border-top border-bottom border-3 border-warning">
       <div>
         <img
           src={movie.poster}

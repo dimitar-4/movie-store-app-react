@@ -86,7 +86,7 @@ function Checkout() {
     <form onSubmit={handleSubmit} className="mb-4">
       <h2 className="text-center text-uppercase">Checkout</h2>
       <div className="row p-3 p-md-0 mt-4">
-        <div className="col-12 col-md-7 col p-2 mb-4 bg-dark">
+        <div className="col-12 col-md-7 col p-2 mb-4 bg-dark border-top border-bottom border-3 border-warning">
           <h3 className="mb-4 text-light text-center">Billing Details</h3>
           <div className="row">
             <div className="col">
@@ -152,7 +152,7 @@ function Checkout() {
               />
             </div>
           </div>
-          <div className="row mt-4">
+          <div className="row mt-4 mb-2">
             <div className="col">
               <input
                 type="text"
