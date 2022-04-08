@@ -17,3 +17,8 @@ code {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.movies-btn {
+  letter-spacing: 0.2rem;
+  text-align: center;
+}
