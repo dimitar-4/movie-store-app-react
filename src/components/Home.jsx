@@ -12,6 +12,7 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [featured, setFeatured] = useState();
   const [movies, setMovies] = useState([]);
+  const [classics, setClassics] = useState([]);
   const [errors, setErrors] = useState(null);
 
   const { addToBag } = useBag();
@@ -25,7 +26,8 @@ function Home() {
       .then((json) => {
         if (json.status === 200) {
           setMovies(json.data.slice(4, 8));
-          setFeatured(json.data[1]);
+          setClassics(json.data.slice(0, 4));
+          setFeatured(json.data[20]);
         } else {
           setErrors(json.errors ?? ["Sorry! Something went wrong."]);
         }
@@ -50,48 +52,8 @@ function Home() {
   if (errors) return <Errors errors={errors} />;
   return (
     <div>
-      <div>
-        <h2 className="text-center mb-5 text-uppercase">Popular Favorites</h2>
-        <div className="row justify-content-center mb-5">
-          {movies.map((movie) => (
-            <Card key={movie.id} movie={movie} />
-          ))}
-        </div>
-      </div>
-      <div className="">
-        <button
-          className="btn btn-dark mb-5 w-100 movies-btn shadow fs-4 rounded-0 text-uppercase"
-          onClick={seeMovies}
-        >
-          All Movies
-        </button>
-      </div>
-      <div className="row bg-dark text-light mb-4 p-3 border-top border-bottom border-3 border-warning">
-        <div className="col-12 col-md-4 text-center my-2">
-          <p className="m-0">
-            <MdOutlineLocalShipping className="fs-2 text-warning" />
-          </p>
-          <em>
-            Shipment and delivery is always <strong>FREE</strong>!!!
-          </em>
-        </div>
-        <div className="col-12 col-md-4 text-center my-2">
-          <p className="m-0">
-            <GiUsbKey className="fs-2 text-warning" />
-          </p>
-          <em>High quality physical formats!!!</em>
-        </div>
-        <div className="col-12 col-md-4 text-center my-2">
-          <p className="m-0">
-            <RiRefund2Line className="fs-2 text-warning" />
-          </p>
-          <em>
-            <strong>FREE</strong> returns and refunds in 48 hours!!!
-          </em>
-        </div>
-      </div>
-      <div className="row p-3 mb-4">
-        <h2 className="text-center mb-5 text-uppercase">A must see classic</h2>
+      <div className="row px-3 mb-4">
+        <h2 className="text-center mb-4 text-uppercase">A must see</h2>
         <div className="col-md-6 p-4 order-1 order-md-0">
           <h1 className="mb-4">{featured.title}</h1>
           <div className="d-flex fw-bold">
@@ -121,6 +83,54 @@ function Home() {
             alt={featured.title + " poster"}
             className="d-block h-100 mx-auto shadow"
           />
+        </div>
+      </div>
+      <div className="">
+        <button
+          className="btn btn-dark mb-4 w-100 movies-btn shadow fs-4 rounded-0 text-uppercase"
+          onClick={seeMovies}
+        >
+          All Movies
+        </button>
+      </div>
+      <div>
+        <h2 className="text-center mb-4 text-uppercase">Popular Favorites</h2>
+        <div className="row justify-content-center mb-4">
+          {movies.map((movie) => (
+            <Card key={movie.id} movie={movie} />
+          ))}
+        </div>
+      </div>
+      <div className="row bg-dark text-light mb-4 p-3 border-top border-bottom border-3 border-warning">
+        <div className="col-12 col-md-4 text-center my-2">
+          <p className="m-0">
+            <MdOutlineLocalShipping className="fs-2 text-warning" />
+          </p>
+          <em>
+            Shipment and delivery is always <strong>FREE</strong>!!!
+          </em>
+        </div>
+        <div className="col-12 col-md-4 text-center my-2">
+          <p className="m-0">
+            <GiUsbKey className="fs-2 text-warning" />
+          </p>
+          <em>High quality physical formats!!!</em>
+        </div>
+        <div className="col-12 col-md-4 text-center my-2">
+          <p className="m-0">
+            <RiRefund2Line className="fs-2 text-warning" />
+          </p>
+          <em>
+            <strong>FREE</strong> returns and refunds in 48 hours!!!
+          </em>
+        </div>
+      </div>
+      <div>
+        <h2 className="text-center mb-4 text-uppercase">Classics</h2>
+        <div className="row justify-content-center mb-5">
+          {classics.map((movie) => (
+            <Card key={movie.id} movie={movie} />
+          ))}
         </div>
       </div>
     </div>
