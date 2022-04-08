@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GiTwoCoins, GiUsbKey } from "react-icons/gi";
-import { RiRefund2Line, RiMovie2Fill } from "react-icons/ri";
+import { RiRefund2Line } from "react-icons/ri";
 import { MdOutlineLocalShipping } from "react-icons/md";
 import Spinner from "./Spinner";
 import Errors from "./Errors";
@@ -50,9 +50,48 @@ function Home() {
   if (errors) return <Errors errors={errors} />;
   return (
     <div>
-      <div className="row p-3">
-        <h2 className="text-center mb-4 text-uppercase">A must see classic</h2>
-        <hr />
+      <div>
+        <h2 className="text-center mb-5 text-uppercase">Popular Favorites</h2>
+        <div className="row justify-content-center mb-5">
+          {movies.map((movie) => (
+            <Card key={movie.id} movie={movie} />
+          ))}
+        </div>
+      </div>
+      <div className="">
+        <button
+          className="btn btn-dark mb-5 w-100 movies-btn shadow fs-4 rounded-0 text-uppercase"
+          onClick={seeMovies}
+        >
+          All Movies
+        </button>
+      </div>
+      <div className="row bg-dark text-light mb-4 p-3 border-top border-bottom border-3 border-warning">
+        <div className="col-12 col-md-4 text-center my-2">
+          <p className="m-0">
+            <MdOutlineLocalShipping className="fs-2 text-warning" />
+          </p>
+          <em>
+            Shipment and delivery is always <strong>FREE</strong>!!!
+          </em>
+        </div>
+        <div className="col-12 col-md-4 text-center my-2">
+          <p className="m-0">
+            <GiUsbKey className="fs-2 text-warning" />
+          </p>
+          <em>High quality physical formats!!!</em>
+        </div>
+        <div className="col-12 col-md-4 text-center my-2">
+          <p className="m-0">
+            <RiRefund2Line className="fs-2 text-warning" />
+          </p>
+          <em>
+            <strong>FREE</strong> returns and refunds in 48 hours!!!
+          </em>
+        </div>
+      </div>
+      <div className="row p-3 mb-4">
+        <h2 className="text-center mb-5 text-uppercase">A must see classic</h2>
         <div className="col-md-6 p-4 order-1 order-md-0">
           <h1 className="mb-4">{featured.title}</h1>
           <div className="d-flex fw-bold">
@@ -83,47 +122,6 @@ function Home() {
             className="d-block h-100 mx-auto shadow"
           />
         </div>
-      </div>
-      <div className="row bg-dark text-light mb-4 p-3 border-top border-bottom border-3 border-warning">
-        <div className="col-12 col-md-4 text-center my-2">
-          <p className="m-0">
-            <MdOutlineLocalShipping className="fs-2 text-warning" />
-          </p>
-          <em>
-            Shipment and delivery is always <strong>FREE</strong>!!!
-          </em>
-        </div>
-        <div className="col-12 col-md-4 text-center my-2">
-          <p className="m-0">
-            <GiUsbKey className="fs-2 text-warning" />
-          </p>
-          <em>High quality physical formats!!!</em>
-        </div>
-        <div className="col-12 col-md-4 text-center my-2">
-          <p className="m-0">
-            <RiRefund2Line className="fs-2 text-warning" />
-          </p>
-          <em>
-            <strong>FREE</strong> returns and refunds in 48 hours!!!
-          </em>
-        </div>
-      </div>
-      <div>
-        <h2 className="text-center mb-4 text-uppercase">Popular Favorites</h2>
-        <hr />
-        <div className="row justify-content-center mb-4">
-          {movies.map((movie) => (
-            <Card key={movie.id} movie={movie} />
-          ))}
-        </div>
-      </div>
-      <div className="">
-        <button
-          className="btn btn-dark mx-auto my-4 w-50 d-flex justify-content-center align-items-center shadow"
-          onClick={seeMovies}
-        >
-          All Movies&nbsp; <RiMovie2Fill />
-        </button>
       </div>
     </div>
   );
