@@ -10,8 +10,8 @@ function Footer() {
   const date = new Date();
 
   return (
-    <footer className="py-4 bg-dark text-white mt-auto">
-      <div className="row mx-auto">
+    <footer className="py-4 bg-warning text-white mt-auto">
+      <div className="row mx-auto bg-dark">
         <div className="col-12 col-md-4 my-2">
           <p className="m-0 text-center">Contact Us</p>
           <p className="text-warning text-center m-0">
@@ -39,6 +39,12 @@ function Footer() {
             <FaYoutubeSquare className="mx-2" />
           </p>
         </div>
+      </div>
+      <div className="row mx-auto bg-dark">
+        <p className="text-center fw-lighter fst-italic">
+          Screen Goldies movie store is a fictional web store created by Dimitar
+          Cholakov for educational purpose.
+        </p>
       </div>
     </footer>
   );
