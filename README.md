@@ -13,7 +13,7 @@ It gives opportunity to list through number of high rated movies, their details,
 
 1. React
 2. JavaScript
-3. CSS
+3. CSS/HTML
 4. Rest API
 5. MongoDB
 6. Git
@@ -30,4 +30,4 @@ It gives opportunity to list through number of high rated movies, their details,
 
 - Big Thanks to [Sebastian Vallin](https://github.com/sebastian-vallin) for creating the API, his help and guidance I used to create this project.
 - The data provided in the API is from [IMDb](https://www.imdb.com/?ref_=nv_home).
-- The background image used in the project is from [Pinterest](https://in.pinterest.com/).
+- The background image used for "A must see" section & movie details pages in the project is from [Pinterest](https://in.pinterest.com/).
