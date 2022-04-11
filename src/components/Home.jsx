@@ -52,8 +52,10 @@ function Home() {
   if (errors) return <Errors errors={errors} />;
   return (
     <div>
-      <div className="row px-3 mb-4">
-        <h2 className="text-center mb-4 text-uppercase">A must see</h2>
+      <h2 className="text-center mb-4 text-uppercase text-warning">
+        A must see
+      </h2>
+      <div className="row px-3 mb-4 bg-img border border-2 border-warning">
         <div className="col-md-6 p-4 order-1 order-md-0">
           <h1 className="mb-4">{featured.title}</h1>
           <div className="d-flex fw-bold">
@@ -85,16 +87,18 @@ function Home() {
           />
         </div>
       </div>
-      <div className="">
+      <div>
         <button
-          className="btn btn-dark mb-4 w-100 movies-btn shadow fs-4 rounded-0 text-uppercase"
+          className="btn btn-warning text-dark mb-4 w-100 movies-btn shadow fs-4 rounded-0 text-uppercase"
           onClick={seeMovies}
         >
           All Movies
         </button>
       </div>
       <div>
-        <h2 className="text-center mb-4 text-uppercase">Popular Favorites</h2>
+        <h2 className="text-center mb-4 text-uppercase text-warning">
+          Popular Favorites
+        </h2>
         <div className="row justify-content-center mb-4">
           {movies.map((movie) => (
             <Card key={movie.id} movie={movie} />
@@ -126,7 +130,9 @@ function Home() {
         </div>
       </div>
       <div>
-        <h2 className="text-center mb-4 text-uppercase">Classics</h2>
+        <h2 className="text-center mb-4 text-uppercase text-warning">
+          Classics
+        </h2>
         <div className="row justify-content-center mb-5">
           {classics.map((movie) => (
             <Card key={movie.id} movie={movie} />
@@ -144,7 +150,7 @@ function Card({ movie }) {
       className="my-2 col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center"
     >
       <img
-        className="shadow"
+        className="shadow border border-2 border-warning"
         style={{ height: 300 }}
         src={movie.poster}
         alt={movie.title + " poster"}
