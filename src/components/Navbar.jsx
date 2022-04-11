@@ -4,10 +4,10 @@ import { GiPopcorn } from "react-icons/gi";
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light text-light bg-dark mb-4">
+    <nav className="navbar navbar-expand-lg navbar-light bg-warning mb-4">
       <div className="container-fluid">
         <Link
-          className="navbar-brand text-light fs-2 ms-4 d-flex align-items-center"
+          className="navbar-brand text-light bg-dark fs-2 ms-3 ps-1 d-flex align-items-center"
           to="/"
         >
           <strong className="text-warning">S</strong>creen
@@ -29,7 +29,7 @@ function Navbar() {
           <ul className="navbar-nav text-uppercase fw-normal ms-5">
             <li className="nav-item">
               <Link
-                className="nav-link text-light active"
+                className="nav-link fs-5 text-dark"
                 aria-current="page"
                 to="/"
               >
@@ -37,17 +37,17 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-light" to="/movies">
+              <Link className="nav-link fs-5 text-dark" to="/movies">
                 Movies
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-light" to="/orders">
+              <Link className="nav-link fs-5 text-dark" to="/orders">
                 Orders
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-light" to="/about">
+              <Link className="nav-link fs-5 text-dark" to="/about">
                 About/Contact
               </Link>
             </li>

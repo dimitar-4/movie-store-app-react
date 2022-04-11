@@ -66,14 +66,14 @@ function Bag() {
   return (
     <>
       <button
-        className="btn btn-sm btn-dark ms-auto border-1 border-warning position-relative"
+        className="btn btn-sm btn-warning ms-auto border-2 border-dark position-relative"
         data-bs-toggle="offcanvas"
         data-bs-target="#bag"
         aria-controls="bag"
       >
-        <GiBasket size={20} />
+        <GiBasket size={25} className="text-dark" />
         <span className="visually-hidden">shopping bag</span>
-        <span className="position-absolute top-0 start-100 translate-middle badge bg-warning text-dark border-1 border-dark">
+        <span className="position-absolute top-0 start-100 translate-middle badge bg-dark text-warning">
           {movies.length}
           <span className="visually-hidden">items in shopping bag</span>
         </span>
