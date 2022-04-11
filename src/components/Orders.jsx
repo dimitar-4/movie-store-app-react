@@ -20,7 +20,7 @@ function Orders() {
 
   return (
     <div>
-      <h2 className="text-uppercase text-center mb-4">Orders</h2>
+      <h2 className="text-uppercase text-center mb-4 text-warning">Orders</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-group">
           <input
@@ -32,14 +32,16 @@ function Orders() {
             value={orderId}
             onChange={(e) => setOrderId(e.target.value)}
           />
-          <button type="submit" className="btn btn-outline-dark">
+          <button type="submit" className="btn btn-outline-light">
             Get Order
           </button>
         </div>
-        <div className="form-text">Please enter your order ID.</div>
+        <div className="form-text text-warning">
+          Please enter your order ID.
+        </div>
       </form>
       <button
-        className="btn btn-dark mx-2 my-4 d-flex align-items-center shadow"
+        className="btn btn-light mx-2 my-4 d-flex align-items-center shadow"
         onClick={goBack}
       >
         <MdArrowBackIosNew /> &nbsp;Back

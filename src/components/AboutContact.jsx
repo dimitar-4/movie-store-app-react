@@ -8,8 +8,8 @@ import { MdOutlineLocalShipping } from "react-icons/md";
 function AboutContact() {
   return (
     <div>
-      <h2 className="text-center text-uppercase mb-4">About Us</h2>
-      <p className="text-center mb-4">
+      <h2 className="text-center text-uppercase mb-4 text-warning">About Us</h2>
+      <p className="text-center mb-4 text-light">
         Screen Goldies is what it's considered by many - your living room
         friendly online movie store. We provide easy and quick way to purchase a
         physical copy of the highest rated ever movies by the biggest rating
@@ -18,7 +18,9 @@ function AboutContact() {
         must see'. Our goal is to turn your movie nights alone or with friends
         in to a night to remember.
       </p>
-      <h4 className="text-center text-uppercase mb-4">And Remember</h4>
+      <h4 className="text-center text-uppercase mb-4 text-warning">
+        And Remember
+      </h4>
       <div className="row bg-dark text-light mb-4 p-3 border-top border-bottom border-3 border-warning">
         <div className="col-12 col-md-4 text-center my-2">
           <p className="m-0">
@@ -44,10 +46,12 @@ function AboutContact() {
         </div>
       </div>
       <hr />
-      <h2 className="text-center text-uppercase mb-4">Contact Us</h2>
+      <h2 className="text-center text-uppercase mb-4 text-warning">
+        Contact Us
+      </h2>
       <form className="mb-4">
         <div className="row">
-          <div className="col-12 col-md-10 col-lg-8 offset-lg-2 bg-dark border-top border-bottom border-3 border-warning p-2">
+          <div className="col-12 col-md-10 col-lg-8 offset-lg-2 bg-dark">
             <div className="row g-3 mb-4 mt-2">
               <div className="col form-floating">
                 <input
@@ -96,15 +100,17 @@ function AboutContact() {
           </div>
         </div>
       </form>
-      <h4 className="text-center text-uppercase mb-4">Or write us at</h4>
-      <p className="fs-6 mb-1 text-center">
+      <h4 className="text-center text-uppercase mb-4 text-warning">
+        Or write us at
+      </h4>
+      <p className="fs-6 mb-1 text-center text-light">
         <GrMail />{" "}
         <em>
           <strong>customer.service@sgms.net</strong>
         </em>{" "}
         - for questions concerning orders.
       </p>
-      <p className="fs-6 mb-4 text-center">
+      <p className="fs-6 mb-4 text-center text-light">
         <GrMail />{" "}
         <em>
           <strong>customer.info@sgms.net</strong>

@@ -28,7 +28,7 @@ function Movies() {
     return (
       <div className="d-flex justify-content-center">
         <div
-          className="spinner-border"
+          className="spinner-border text-warning"
           style={{ width: "3rem", height: "3rem" }}
         >
           <span className="visually-hidden">Loading...</span>
@@ -44,7 +44,9 @@ function Movies() {
     ));
   return (
     <div>
-      <h2 className="text-uppercase text-center my-2">the movies</h2>
+      <h2 className="text-uppercase text-center my-2 text-warning">
+        the movies
+      </h2>
       <div className="row">
         {movies.map((movie) => (
           <div key={movie.id} className="col col-lg-6 col-xll-4 my-3">

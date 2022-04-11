@@ -51,7 +51,7 @@ function MovieDetails() {
   if (errors) return <Errors errors={errors} />;
 
   return (
-    <div className="my-4">
+    <div className="my-4 p-3 bg-img border border-2 border-warning">
       <div className="row my-4">
         <div className="col order-1 order-md-0">
           <h1 className="mt-3">{movie.title}</h1>

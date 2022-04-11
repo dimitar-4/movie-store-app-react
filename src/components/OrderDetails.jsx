@@ -34,16 +34,16 @@ function OrderDetails() {
   if (errors) return <Errors errors={errors} />;
   return (
     <div className="text-center">
-      <h1 className="text-uppercase mb-4">Order</h1>
-      <h2 className="text-secondary">{orderId}</h2>
-      <h6 className="mb-4">
+      <h1 className="text-uppercase mb-4 text-warning">Order</h1>
+      <h2 className="text-light">{orderId}</h2>
+      <h6 className="mb-4 text-light">
         <strong>{new Date(order.createdAt).toLocaleString()}</strong>
       </h6>
       {order.movies.map((movie) => (
         <Card key={movie.movieId} movie={movie} />
       ))}
       <button
-        className="btn btn-dark mx-2 my-4 d-flex align-items-center shadow"
+        className="btn btn-light mx-2 my-4 d-flex align-items-center shadow"
         onClick={goBack}
       >
         <MdArrowBackIosNew /> &nbsp;Back
@@ -54,7 +54,7 @@ function OrderDetails() {
 
 function Card({ movie }) {
   return (
-    <div className="bg-dark text-light px-3 py-4 mb-2 rounded d-flex justify-content-between align-items-center">
+    <div className="bg-light text-dark px-3 py-4 mb-2 rounded d-flex justify-content-between align-items-center">
       <p className="m-0">
         {movie.title}&nbsp;
         <em>&times;{movie.quantity}</em>
