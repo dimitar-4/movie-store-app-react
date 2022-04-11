@@ -11,7 +11,7 @@ import AboutContact from "./components/AboutContact";
 
 function App() {
   return (
-    <div className="d-flex flex-column min-vh-100 bg-img">
+    <div className="d-flex flex-column min-vh-100 bg-dark">
       <Navbar />
       <div className="container">
         <Routes>
